@@ -1559,23 +1559,21 @@ justify-content: flex-end;
   gap: 40px;
 }
 
-.artisan-card {
+.artisans-people-section .artisan-card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
   width: 100%;
 }
 
-.artisan-photo {
-  width: 100%;   /* safe here, it stays inside card */
-  height: 430px; /* increase height */
+.artisans-people-section .artisan-card {
+  width: 100%;
+  min-width: 0;
 }
 
-.artisan-card {
-  flex: 0 0 335px; /* controls width */
-}
-
-.section-reveal > div:last-child {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px; /* THIS is your real spacing control */
+.artisans-people-section .artisan-photo {
+  width: 100%;
+  height: 430px;
 }
 /* ── FILMSTRIP — edge to edge, like Granyon ──
        flex:1 on every .thumb means they ALL share the
@@ -2687,9 +2685,15 @@ img, video, iframe { max-width: 100%; }
    The base rule sets flex: 0 0 335px, which overflows on viewports
    narrower than 375px.  These overrides make cards adaptive. */
 @media (max-width: 900px) {
+  .artisans-people-section .artisan-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
   .artisan-card {
     flex: 0 0 calc(50% - 10px) !important;
     width: calc(50% - 10px) !important;
+  }
+  .artisans-people-section .artisan-card {
+    width: 100% !important;
   }
   .artisan-photo {
     height: 320px;
@@ -2697,6 +2701,9 @@ img, video, iframe { max-width: 100%; }
 }
 
 @media (max-width: 600px) {
+  .artisans-people-section .artisan-card-grid {
+    grid-template-columns: 1fr;
+  }
   .artisan-card {
     flex: 0 0 100% !important;
     width: 100% !important;
